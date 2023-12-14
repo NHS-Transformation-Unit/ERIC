@@ -1,2 +1,55 @@
-# ERIC
-Repository for the analysis of the Estates Return Information Collective (ERIC) and associated outputs
+<img src="images/TU_logo_large.png" alt="TU logo" width="200" align="right"/>
+
+# Estates Returns Information Collection (ERIC)
+This repository contains the scripts to download, process and analyse the 2022/23 [ERIC publication](https://digital.nhs.uk/data-and-information/publications/statistical/estates-returns-information-collection/england-2022-23) from NHS Digital. 
+
+<br/>
+
+## Using the Repo
+To be completed
+
+<br>
+
+## Repo Structure
+
+At present the structure of the repository is:
+
+``` plaintext
+
+├───data
+    └───lookups
+├───images
+└───src
+    ├───config
+    ├───outputs
+    ├───processing
+    ├───requirements
+    └───visualisation
+    
+```
+
+<br/>
+
+### `data`
+Where the extract of APCE data will be saved for loading and processing.
+
+### `images`
+
+Images such as TU logos and branding to add to outputs.
+
+### `src`
+
+All code is stored in src. This is subdivided into five modules:
+
+1. `config`: Files for configuring the output such as the `theme.css`.
+2. `data`: External datasets providing look-ups of NHS Trust and Sites to their geographical locations.
+3. `processing`: Files for downloading and processing the ERIC data.
+4. `requirements`: Requirements file for building the output html such as the `packages.R` script.
+5. `visualisation`: Files for producing the visualisations used within the outputs.
+
+## Contributors
+
+This repository has been created and developed by:
+
+-   [Andy Wilson](https://github.com/ASW-Analyst)
+-   [Simon Wickham](https://github.com/SiWickham)
