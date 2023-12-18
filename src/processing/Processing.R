@@ -1,2 +1,6 @@
-test <- eric_site %>%
-  select(c(Site.Code,Site.Name,Tenure))
+Tenure_type <- eric_site %>%
+  select(c(Integrated.Care.Board,Trust.Code,Site.Code,Site.Name,Tenure))
+
+Clinical_Space <- eric_site %>%
+  select(c(Integrated.Care.Board,Trust.Code,Site.Code,Site.Name,"Gross.internal.floor.area.(m²)","Clinical.space.-.other.(m²)"))
+
