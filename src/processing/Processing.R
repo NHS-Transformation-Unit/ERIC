@@ -47,7 +47,17 @@ Cost_backlog <- Cleansed_eric_site %>%
             High_risk_backlog,
             Significant_risk_backlog,
             Moderate_risk_backlog,
-            Low_risk_backlog))
+            Low_risk_backlog)) %>%
+  mutate(High_risk_backlog = as.numeric(High_risk_backlog),
+         Significant_risk_backlog = as.numeric(Significant_risk_backlog),
+         Moderate_risk_backlog = as.numeric(Moderate_risk_backlog),
+         Low_risk_backlog = as.numeric(Low_risk_backlog),
+         "Total_backlog" = High_risk_backlog + Significant_risk_backlog + Moderate_risk_backlog + Low_risk_backlog,
+         "Proportion_high" = High_risk_backlog / Total_backlog,
+         "Proportion_significant" = Significant_risk_backlog / Total_backlog,
+         "Proportion_moderate" = Moderate_risk_backlog / Total_backlog,
+         "Proportion_low" = Low_risk_backlog / Total_backlog)
+
 str(Cost_backlog)
 
 
