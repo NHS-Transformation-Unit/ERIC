@@ -36,3 +36,18 @@ Age_Profile <- Cleansed_eric_site %>%
            Age_2015_2024))
 
 
+
+# Backlog -----------------------------------------------------------------
+
+Cost_backlog <- Cleansed_eric_site %>%
+  select (c(ICB,
+            Trust_Code,
+            Site_Code,
+            Site_Name,
+            High_risk_backlog,
+            Significant_risk_backlog,
+            Moderate_risk_backlog,
+            Low_risk_backlog))
+str(Cost_backlog)
+
+
