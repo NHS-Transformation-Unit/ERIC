@@ -20,4 +20,19 @@ Clinical_Space <- Cleansed_eric_site %>%
 
 # Age Profile -------------------------------------------------------------
 
-Age_Profile <- Cleansed_eric_site
+Age_Profile <- Cleansed_eric_site %>%
+  select (c(ICB,
+           Trust_Code,
+           Site_Code,
+           Site_Name,
+           Age_pre_1948,
+           Age_1948_1954,
+           Age_1955_1964,
+           Age_1965_1974,
+           Age_1975_1984,
+           Age_1985_1994,
+           Age_1995_2004,
+           Age_2005_2014,
+           Age_2015_2024))
+
+
