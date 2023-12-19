@@ -1,19 +1,23 @@
 
 # Tenure ------------------------------------------------------------------
 
-Tenure_type <- eric_site %>%
-  select(c(Integrated.Care.Board, Trust.Code, Site.Code, Site.Name, Tenure))
+Tenure_type <- Cleansed_eric_site %>%
+  select(c(ICB, Trust_Code, Site_Code, Site_Name, Tenure))
 
 
 # Clinical Space ----------------------------------------------------------
 
-Clinical_Space <- eric_site %>%
-  select(c(Integrated.Care.Board,Trust.Code,
-           Site.Code,Site.Name,
-           `Gross.internal.floor.area.(m²)`,
-           `Clinical.space.-.other.(m²)`)) %>%
-  mutate(`Clinical.space.-.other.(m²)` = as.numeric(`Clinical.space.-.other.(m²)`))
-
+Clinical_Space <- Cleansed_eric_site %>%
+  select(c(ICB,
+           Trust_Code,
+           Site_Code,
+           Site_Name,
+           Gross_internal_floor_space,
+           CS_Other)) %>%
+  mutate(CS_Other = as.numeric(CS_Other),
+         "Proportion_clinical_space" = CS_Other / Gross_internal_floor_space)
+  
 
 # Age Profile -------------------------------------------------------------
 
+Age_Profile <- Cleansed_eric_site
