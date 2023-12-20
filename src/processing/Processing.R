@@ -5,6 +5,7 @@ Tenure_type <- Cleansed_eric_site %>%
   select(c(ICB, Trust_Code, Site_Code, Site_Name, Tenure))
 
 
+
 # Clinical Space ----------------------------------------------------------
 
 Clinical_Space <- Cleansed_eric_site %>%
@@ -16,6 +17,7 @@ Clinical_Space <- Cleansed_eric_site %>%
            CS_Other)) %>%
   mutate(CS_Other = as.numeric(CS_Other),
          "Proportion_clinical_space" = CS_Other / Gross_internal_floor_space)
+
   
 
 # Age Profile -------------------------------------------------------------
@@ -58,6 +60,16 @@ Cost_backlog <- Cleansed_eric_site %>%
          "Proportion_moderate" = Moderate_risk_backlog / Total_backlog,
          "Proportion_low" = Low_risk_backlog / Total_backlog)
 
-str(Cost_backlog)
 
 
+# Incidents from risk -----------------------------------------------------
+
+Incident_risk <- Cleansed_eric_site %>%
+  select (c(ICB,
+            Trust_Code,
+            Site_Code,
+            Site_Name,
+            Clinical_incidents_from_critical_infrastructure_risk,
+            Clinical_incidents_from_noncritical_infrastructure_risk,
+            Estates_incidents_from_critical_infrastructure_risk,
+            Estates_incidents_from_noncritical_infrastructure_risk))
