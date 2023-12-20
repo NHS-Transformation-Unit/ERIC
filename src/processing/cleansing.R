@@ -12,9 +12,9 @@ colnames(Cleansed_eric_site)[c(1,
                         28,
                         35,
                         71:
-                        74,
+                          74,
                         82:
-                        90,
+                          90,
                         97,
                         99,
                         101,
@@ -22,7 +22,9 @@ colnames(Cleansed_eric_site)[c(1,
                         105,
                         107,
                         109,
-                        111)] <- c("Trust_Code",
+                        111,
+                        185:
+                          189)] <- c("Trust_Code",
                                 "Trust_Name",
                                 "Site_Code",
                                 "Site_Name",
@@ -49,6 +51,10 @@ colnames(Cleansed_eric_site)[c(1,
                                 "Other_electricity",
                                 "Gas",
                                 "Oil",
-                                "Renewable_non_fossil_fuel")
+                                "Renewable_non_fossil_fuel",
+                                "Clinical_incidents_from_critical_infrastructure_risk",
+                                "Clinical_incidents_from_noncritical_infrastructure_risk",
+                                "Estates_incidents_from_critical_infrastructure_risk",
+                                "Estates_incidents_from_noncritical_infrastructure_risk")
 
 colnames(Cleansed_eric_site)
