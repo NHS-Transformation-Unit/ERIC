@@ -79,4 +79,30 @@ Incident_risk <- Cleansed_eric_site %>%
 
 # Energy ------------------------------------------------------------------
 
+Energy_consumption <- Cleansed_eric_site %>%
+  select(c(ICB,
+           Trust_Code,
+           Site_Code,
+           Site_Name,
+           Green_electricity,
+           Trust_owned_solar_electricity,
+           Third_party_solar_electricity,
+           Other_renewable_electricity,
+           Other_electricity,
+           Gas,
+           Oil,
+           Renewable_non_fossil_fuel,
+           Gross_internal_floor_space))%>%
+  mutate(Green_electricity = as.numeric(Green_electricity),
+         Trust_owned_solar_electricity = as.numeric(Trust_owned_solar_electricity),
+         Third_party_solar_electricity = as.numeric(Third_party_solar_electricity),
+         Other_renewable_electricity = as.numeric(Other_renewable_electricity),
+         Other_electricity = as.numeric(Other_electricity),
+         Gas = as.numeric(Gas),
+         Oil = as.numeric(Oil),
+         Renewable_non_fossil_fuel = as.numeric(Renewable_non_fossil_fuel),
+         "Total_electricity" = Green_electricity + Trust_owned_solar_electricity + Third_party_solar_electricity + Other_renewable_electricity + Other_electricity,
+         "Total_energy" = Total_electricity + Gas + Oil + Renewable_non_fossil_fuel,
+         "Electricity_per_metre_squared" = Total_electricity / Gross_internal_floor_space,
+         "Total_energy_per_metre_squared" = Total_energy / Gross_internal_floor_space)
 
