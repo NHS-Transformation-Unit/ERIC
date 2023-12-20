@@ -71,5 +71,12 @@ Incident_risk <- Cleansed_eric_site %>%
             Site_Name,
             Clinical_incidents_from_critical_infrastructure_risk,
             Clinical_incidents_from_noncritical_infrastructure_risk,
+            Clinical_incidents_from_other_failure,
             Estates_incidents_from_critical_infrastructure_risk,
             Estates_incidents_from_noncritical_infrastructure_risk))
+
+
+
+# Energy ------------------------------------------------------------------
+
+
