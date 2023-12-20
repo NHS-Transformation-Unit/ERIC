@@ -25,7 +25,7 @@ Cleansed_eric_site <- eric_site %>%
                 "Age_pre_1948" = 90,
                 "Green_electricity" = 97,
                 "Trust_owned_solar_electricity" = 99,
-                "3rd_party_solar_electricity" = 101,
+                "Third_party_solar_electricity" = 101,
                 "Other_renewable_electricity" = 103,
                 "Other_electricity" = 105,
                 "Gas" = 107,
