@@ -8,10 +8,15 @@ Trust_backlog_plot <- function(R0A){
     filter(Trust_Code == "R0A")
   
   ggplot(temp_backlog, aes(x = Site_Name)) +
-    geom_bar(aes(y = High_risk_backlog, fill = "#005EB8"),stat = "identity") +
-    geom_bar(aes(y = significant_risk_backlog, fill = "#3BF162"), stat = "identity") +
+    geom_bar(aes(y = High_risk_backlog), stat = "identity", fill = "#005EB8") +
+    geom_bar(aes(y = Significant_risk_backlog), stat = "identity", fill = "#92D050") +
+    geom_bar(aes(y = Moderate_risk_backlog), stat = "identity", fill = "#F05030") +
+    geom_bar(aes(y = Low_risk_backlog), stat = "identity", fill = "#E571CC") +
+    scale_y_continuous(labels = scales::dollar_format(prefix = "£")) +
+    ylab("Total backlog by risk") +
+    xlab("Site name") +
     theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
-    ggtitle("High and significant Risk Backlog")
+    ggtitle("Total Risk backlog per site")
   
 }
 
