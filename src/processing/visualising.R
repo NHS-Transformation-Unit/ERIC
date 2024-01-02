@@ -8,13 +8,14 @@ Trust_clinical_plot <- function(R0A){
     filter(Trust_Code == "R0A")
   
   ggplot(temp_clinical, aes(x = Site_Name)) +
-    geom_bar(aes(y = Non_CS), stat = "identity", fill = "blue") +
-    geom_bar(aes(y = CS_Other), stat = "identity", fill = "lightblue") +
+    geom_bar(aes(y = Non_CS, fill = "Non clinical"), stat = "identity") +
+    geom_bar(aes(y = CS_Other, fill = "Clinical"), stat = "identity") +
     #scale_y_continuous(labels = scales::comma()) +
     ylab("Gross internal space in metres squared") +
     xlab("Site name") +
     theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
-    ggtitle("Gross Internal Space, split by clinical and non clinical")
+    ggtitle("Gross Internal Space, split by clinical and non clinical") +
+    scale_fill_manual(values = c("blue", "lightblue"), name = "Dedicated floor space")
   
 }
 
@@ -39,7 +40,7 @@ Trust_backlog_plot <- function(R0A){
     geom_bar(aes(y = Age_1995_2004, fill = "1995-2004"), stat = "identity") +
     geom_bar(aes(y = Age_2005_2014, fill = "2005-2014"), stat = "identity") +
     geom_bar(aes(y = Age_2015_2024, fill = "2015-2024"), stat = "identity") +
-    ylab("Age profile") +
+    ylab("Age profile (%)") +
     xlab("Site name") +
     theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
     ggtitle("Age profile per site") +
@@ -62,17 +63,18 @@ Trust_backlog_plot <- function(R0A){
     filter(Trust_Code == "R0A")
   
   ggplot(temp_backlog, aes(x = Site_Name)) +
-    geom_bar(aes(y = High_risk_backlog), stat = "identity", fill = "#FF0101") +
-    geom_bar(aes(y = Significant_risk_backlog), stat = "identity", fill = "#FDB239") +
-    geom_bar(aes(y = Moderate_risk_backlog), stat = "identity", fill = "#F0F030") +
-    geom_bar(aes(y = Low_risk_backlog), stat = "identity", fill = "#00FF00") +
+    geom_bar(aes(y = High_risk_backlog, fill = "High Risk"), stat = "identity") +
+    geom_bar(aes(y = Significant_risk_backlog, fill = "Significant Risk"), stat = "identity") +
+    geom_bar(aes(y = Moderate_risk_backlog, fill = "Moderate Risk"), stat = "identity") +
+    geom_bar(aes(y = Low_risk_backlog, fill = "Low Risk"), stat = "identity") +
     scale_y_continuous(labels = scales::dollar_format(prefix = "£")) +
     ylab("Total backlog by risk") +
     xlab("Site name") +
     #lab(values = c("High risk" = "#FF0101", "Significant risk" = "#FDB239", "Moderate risk" = "#F0F030", "Low risk" = "#00FF00"),
     #                  name = "Risk category") +
     theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
-    ggtitle("Total Risk backlog per site")
+    ggtitle("Total Risk backlog per site") +
+    scale_fill_manual(values = c("#ff0101", "#fdb239", "#f0f030", "#00ff00"), name = "Risk Backlog")
   
 }
 
