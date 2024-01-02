@@ -30,19 +30,23 @@ Trust_backlog_plot <- function(R0A){
     filter(Trust_Code == "R0A")
   
   ggplot(temp_backlog, aes(x = Site_Name)) +
-    geom_bar(aes(y = Age_pre_1948), stat = "identity", fill = "#8A1538") +
-    geom_bar(aes(y = Age_1948_1954), stat = "identity", fill = "#DA291C") +
-    geom_bar(aes(y = Age_1955_1964), stat = "identity", fill = "#ED8B00") +
-    geom_bar(aes(y = Age_1965_1974), stat = "identity", fill = "#FFB81C") +
-    geom_bar(aes(y = Age_1975_1984), stat = "identity", fill = "#FAE100") +
-    geom_bar(aes(y = Age_1985_1994), stat = "identity", fill = "#78BE20") +
-    geom_bar(aes(y = Age_1995_2004), stat = "identity", fill = "#009639") +
-    geom_bar(aes(y = Age_2005_2014), stat = "identity", fill = "#006747") +
-    geom_bar(aes(y = Age_2015_2024), stat = "identity", fill = "#005EB8") +
+    geom_bar(aes(y = Age_pre_1948, fill = "Pre-1948"), stat = "identity") +
+    geom_bar(aes(y = Age_1948_1954, fill = "1948-1954"), stat = "identity") +
+    geom_bar(aes(y = Age_1955_1964, fill = "1955-1964"), stat = "identity") +
+    geom_bar(aes(y = Age_1965_1974, fill = "1965-1974"), stat = "identity") +
+    geom_bar(aes(y = Age_1975_1984, fill = "1975-1984"), stat = "identity") +
+    geom_bar(aes(y = Age_1985_1994, fill = "1985-1994"), stat = "identity") +
+    geom_bar(aes(y = Age_1995_2004, fill = "1995-2004"), stat = "identity") +
+    geom_bar(aes(y = Age_2005_2014, fill = "2005-2014"), stat = "identity") +
+    geom_bar(aes(y = Age_2015_2024, fill = "2015-2024"), stat = "identity") +
     ylab("Age profile") +
     xlab("Site name") +
     theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
-    ggtitle("Age profile per site")
+    ggtitle("Age profile per site") +
+    scale_fill_manual(values = c(
+      "#8A1538", "#DA291C", "#ED8B00", "#FFB81C",
+      "#FAE100", "#78BE20", "#009639", "#006747", "#005EB8"
+    ), name = "Age Groups")
   
 }
 
