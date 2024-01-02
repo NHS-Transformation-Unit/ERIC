@@ -22,6 +22,34 @@ Trust_clinical_plot("Test")
 
 
 
+# Age Profile -------------------------------------------------------------
+
+Trust_backlog_plot <- function(R0A){
+  
+  temp_backlog <- Age_Profile %>%
+    filter(Trust_Code == "R0A")
+  
+  ggplot(temp_backlog, aes(x = Site_Name)) +
+    geom_bar(aes(y = Age_pre_1948), stat = "identity", fill = "#8A1538") +
+    geom_bar(aes(y = Age_1948_1954), stat = "identity", fill = "#DA291C") +
+    geom_bar(aes(y = Age_1955_1964), stat = "identity", fill = "#ED8B00") +
+    geom_bar(aes(y = Age_1965_1974), stat = "identity", fill = "#FFB81C") +
+    geom_bar(aes(y = Age_1975_1984), stat = "identity", fill = "#FAE100") +
+    geom_bar(aes(y = Age_1985_1994), stat = "identity", fill = "#78BE20") +
+    geom_bar(aes(y = Age_1995_2004), stat = "identity", fill = "#009639") +
+    geom_bar(aes(y = Age_2005_2014), stat = "identity", fill = "#006747") +
+    geom_bar(aes(y = Age_2015_2024), stat = "identity", fill = "#005EB8") +
+    ylab("Age profile") +
+    xlab("Site name") +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
+    ggtitle("Age profile per site")
+  
+}
+
+Trust_backlog_plot("Test")
+
+
+
 # Backlog -----------------------------------------------------------------
 
 Trust_backlog_plot <- function(R0A){
