@@ -1,4 +1,7 @@
-Code_Org
+# Organisation code selection ---------------------------------------------
+
+code_org <- "R0A"
+
 
 
 # Clinical Space ----------------------------------------------------------
@@ -6,7 +9,7 @@ Code_Org
 Trust_clinical_plot <- function(R0A){
   
   temp_clinical <- Clinical_Space %>%
-    filter(Trust_Code == "R0A")
+    filter(Trust_Code == code_org)
   
   ggplot(temp_clinical, aes(x = Site_Name)) +
     geom_bar(aes(y = Non_CS, fill = "Non clinical"), stat = "identity") +
@@ -29,7 +32,7 @@ Trust_clinical_plot("Test")
 Trust_backlog_plot <- function(R0A){
   
   temp_backlog <- Age_Profile %>%
-    filter(Trust_Code == "R0A")
+    filter(Trust_Code == code_org)
   
   ggplot(temp_backlog, aes(x = Site_Name)) +
     geom_bar(aes(y = Age_pre_1948, fill = "Pre-1948"), stat = "identity") +
@@ -61,7 +64,7 @@ Trust_backlog_plot("Test")
 Trust_backlog_plot <- function(R0A){
   
   temp_backlog <- Cost_backlog %>%
-    filter(Trust_Code == "R0A")
+    filter(Trust_Code == code_org)
   
   ggplot(temp_backlog, aes(x = Site_Name)) +
     geom_bar(aes(y = High_risk_backlog, fill = "High Risk"), stat = "identity") +
@@ -87,7 +90,7 @@ Trust_backlog_plot("Test")
 Trust_energy_plot <- function(R0A){
   
   temp_energy <- Energy_consumption %>%
-    filter(Trust_Code == "R0A")
+    filter(Trust_Code == code_org)
   
   ggplot(temp_energy, aes(x = Site_Name, y = Electricity_per_metre_squared)) +
     geom_bar(stat = "identity", fill = "#005EB8") +
@@ -104,12 +107,21 @@ Trust_energy_plot("Test")
 
 # Tenure ------------------------------------------------------------------
 
-Tenure_map <- leaflet(data = Tenure_type) %>%
-  addTiles() %>%
-  addCircleMarkers(
-    ~Longitude_1m, ~Latitude_1m,
-    popup = ~Site_Name,
-    label = ~as.character(Site_Name)
-  ) 
+Trust_site_plot <- function(R0A){
+  
+  temp_tenure <- Tenure_type %>%
+    filter(Trust_Code == code_org)
+  
+  Tenure_map <- leaflet(data = temp_tenure) %>%
+    addTiles() %>%
+    addCircleMarkers(
+      ~Longitude_1m, ~Latitude_1m,
+      popup = ~Site_Name,
+      color = ~Tenure,
+      label = ~as.character(Site_Name)
+    ) 
+}
+
+Trust_site_plot("Test")
 
 print(Tenure_map)
