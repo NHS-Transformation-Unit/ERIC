@@ -1,14 +1,14 @@
 
 # Tenure ------------------------------------------------------------------
 
-Tenure_type <- Cleansed_eric_site %>%
-  select(c(ICB, Trust_Code, Site_Code, Site_Name, Tenure))
+Tenure_type <- Merged_eric_site %>%
+  select(c(ICB, Trust_Code, Site_Code, Site_Name, Tenure, Latitude_1m, Longitude_1m))
 
 
 
 # Clinical Space ----------------------------------------------------------
 
-Clinical_Space <- Cleansed_eric_site %>%
+Clinical_Space <- Merged_eric_site %>%
   select(c(ICB,
            Trust_Code,
            Site_Code,
@@ -23,7 +23,7 @@ Clinical_Space <- Cleansed_eric_site %>%
 
 # Age Profile -------------------------------------------------------------
 
-Age_Profile <- Cleansed_eric_site %>%
+Age_Profile <- Merged_eric_site %>%
   select (c(ICB,
            Trust_Code,
            Site_Code,
@@ -42,7 +42,7 @@ Age_Profile <- Cleansed_eric_site %>%
 
 # Backlog -----------------------------------------------------------------
 
-Cost_backlog <- Cleansed_eric_site %>%
+Cost_backlog <- Merged_eric_site %>%
   select (c(ICB,
             Trust_Code,
             Site_Code,
@@ -65,7 +65,7 @@ Cost_backlog <- Cleansed_eric_site %>%
 
 # Incidents from risk -----------------------------------------------------
 
-Incident_risk <- Cleansed_eric_site %>%
+Incident_risk <- Merged_eric_site %>%
   select (c(ICB,
             Trust_Code,
             Site_Code,
@@ -80,7 +80,7 @@ Incident_risk <- Cleansed_eric_site %>%
 
 # Energy ------------------------------------------------------------------
 
-Energy_consumption <- Cleansed_eric_site %>%
+Energy_consumption <- Merged_eric_site %>%
   select(c(ICB,
            Trust_Code,
            Site_Code,
