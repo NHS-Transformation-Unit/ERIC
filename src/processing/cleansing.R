@@ -38,3 +38,21 @@ Cleansed_eric_site <- eric_site %>%
                 "Estates_incidents_from_noncritical_infrastructure_risk" = 189)
 
 colnames(Cleansed_eric_site)
+
+
+
+# Cleansed NCDR -----------------------------------------------------------
+
+Cleansed_ncdr_site <- ncdr_sites %>%
+  dplyr::rename("Site_Code" = 1) %>%
+  mutate(Longitude_1m = as.numeric(Longitude_1m),
+         Latitude_1m = as.numeric(Latitude_1m))
+
+str(Cleansed_ncdr_site)
+
+
+
+# Merged Data -------------------------------------------------------------
+
+Merged_eric_site <- left_join(Cleansed_eric_site, Cleansed_ncdr_site, 
+                               by = "Site_Code")
