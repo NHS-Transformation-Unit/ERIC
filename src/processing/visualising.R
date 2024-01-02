@@ -1,3 +1,4 @@
+Code_Org
 
 
 # Clinical Space ----------------------------------------------------------
@@ -98,3 +99,17 @@ Trust_energy_plot <- function(R0A){
 }
 
 Trust_energy_plot("Test")
+
+
+
+# Tenure ------------------------------------------------------------------
+
+Tenure_map <- leaflet(data = Tenure_type) %>%
+  addTiles() %>%
+  addCircleMarkers(
+    ~Longitude_1m, ~Latitude_1m,
+    popup = ~Site_Name,
+    label = ~as.character(Site_Name)
+  ) 
+
+print(Tenure_map)
