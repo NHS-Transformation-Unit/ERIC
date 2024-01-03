@@ -112,16 +112,31 @@ Trust_site_plot <- function(R0A){
   temp_tenure <- Tenure_type %>%
     filter(Trust_Code == code_org)
   
+  color_palette <- c("Leased from NHS Property Services" = "green",
+                     "Leased from commercial organisation - lease greater than 99 years" = "blue",
+                     "Leased from commercial organisation - lease less than 99 years" = "lightgreen",
+                     "Freehold" = "red",
+                     "Part site - Private Finance Initiative (PFI)" = "lightblue",
+                     "SLA/lease from public sector" = "yellow",
+                     "NA" = "orange",
+                     "SLA/lease from NHS" = "purple",
+                     "Whole site - Private Finance Initiative (PFI)" = "cyan",
+                     "Local Investment Finance Trust (LIFT))" = "pink")
+  
   Tenure_map <- leaflet(data = temp_tenure) %>%
     addTiles() %>%
     addCircleMarkers(
       ~Longitude_1m, ~Latitude_1m,
-      popup = ~Site_Name,
-      color = ~Tenure,
+      popup = ~paste("Site name: ", Site_Name, "<br>Tenure: ", Tenure),
+      fillColor = ~color_palette[Tenure],
+      radius = 5,
+      fillOpacity = 0.7,
       label = ~as.character(Site_Name)
     ) 
+
+  print(Tenure_map)
+  
 }
 
 Trust_site_plot("Test")
 
-print(Tenure_map)
