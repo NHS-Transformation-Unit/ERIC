@@ -1,12 +1,12 @@
 # Organisation code selection ---------------------------------------------
 
-code_org <- "R0A"
+code_org <- "RNA"
 
 
 
 # Clinical Space ----------------------------------------------------------
 
-Trust_clinical_plot <- function(R0A){
+Trust_clinical_plot <- function(code_org){
   
   temp_clinical <- Clinical_Space %>%
     filter(Trust_Code == code_org)
@@ -29,7 +29,7 @@ Trust_clinical_plot("Test")
 
 # Age Profile -------------------------------------------------------------
 
-Trust_backlog_plot <- function(R0A){
+Trust_backlog_plot <- function(code_org){
   
   temp_backlog <- Age_Profile %>%
     filter(Trust_Code == code_org)
@@ -61,7 +61,7 @@ Trust_backlog_plot("Test")
 
 # Backlog -----------------------------------------------------------------
 
-Trust_backlog_plot <- function(R0A){
+Trust_backlog_plot <- function(code_org){
   
   temp_backlog <- Cost_backlog %>%
     filter(Trust_Code == code_org)
@@ -85,9 +85,10 @@ Trust_backlog_plot <- function(R0A){
 Trust_backlog_plot("Test")
 
 
+
 # Energy ------------------------------------------------------------------
 
-Trust_energy_plot <- function(R0A){
+Trust_energy_plot <- function(code_org){
   
   temp_energy <- Energy_consumption %>%
     filter(Trust_Code == code_org)
@@ -107,7 +108,7 @@ Trust_energy_plot("Test")
 
 # Tenure ------------------------------------------------------------------
 
-Trust_site_plot <- function(R0A){
+Trust_site_plot <- function(code_org){
   
   temp_tenure <- Tenure_type %>%
     filter(Trust_Code == code_org)
