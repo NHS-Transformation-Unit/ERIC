@@ -6,7 +6,7 @@ code_org <- "RNA"
 
 # Clinical Space ----------------------------------------------------------
 
-Trust_clinical_plot <- function(code_org){
+Trust_clinical_plot <- function(RNA){
   
   temp_clinical <- Clinical_Space %>%
     filter(Trust_Code == code_org)
@@ -29,7 +29,7 @@ Trust_clinical_plot("Test")
 
 # Age Profile -------------------------------------------------------------
 
-Trust_backlog_plot <- function(code_org){
+Trust_backlog_plot <- function(RNA){
   
   temp_backlog <- Age_Profile %>%
     filter(Trust_Code == code_org)
@@ -61,7 +61,7 @@ Trust_backlog_plot("Test")
 
 # Backlog -----------------------------------------------------------------
 
-Trust_backlog_plot <- function(code_org){
+Trust_backlog_plot <- function(RNA){
   
   temp_backlog <- Cost_backlog %>%
     filter(Trust_Code == code_org)
@@ -88,7 +88,7 @@ Trust_backlog_plot("Test")
 
 # Energy ------------------------------------------------------------------
 
-Trust_energy_plot <- function(code_org){
+Trust_energy_plot <- function(RNA){
   
   temp_energy <- Energy_consumption %>%
     filter(Trust_Code == code_org)
@@ -108,7 +108,7 @@ Trust_energy_plot("Test")
 
 # Tenure ------------------------------------------------------------------
 
-Trust_site_plot <- function(code_org){
+Trust_site_plot <- function(RNA){
   
   temp_tenure <- Tenure_type %>%
     filter(Trust_Code == code_org)
