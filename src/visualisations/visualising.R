@@ -19,7 +19,7 @@ Trust_clinical_plot <- function(RNA){
     xlab("Site name") +
     theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
     ggtitle("Gross Internal Space, split by clinical and non clinical") +
-    scale_fill_manual(values = c("blue", "lightblue"), name = "Dedicated floor space")
+    scale_fill_manual(values = setNames(cs_colours,cs_levels), name = "Dedicated floor space")
   
 }
 
@@ -48,10 +48,7 @@ Trust_backlog_plot <- function(RNA){
     xlab("Site name") +
     theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
     ggtitle("Age profile per site") +
-    scale_fill_manual(values = c(
-      "#8A1538", "#DA291C", "#ED8B00", "#FFB81C",
-      "#FAE100", "#78BE20", "#009639", "#006747", "#005EB8"
-    ), name = "Age Groups")
+    scale_fill_manual(values = setNames(age_colours,age_levels), name = "Age Groups")
   
 }
 
@@ -74,11 +71,9 @@ Trust_backlog_plot <- function(RNA){
     scale_y_continuous(labels = scales::dollar_format(prefix = "£")) +
     ylab("Total backlog by risk") +
     xlab("Site name") +
-    #lab(values = c("High risk" = "#FF0101", "Significant risk" = "#FDB239", "Moderate risk" = "#F0F030", "Low risk" = "#00FF00"),
-    #                  name = "Risk category") +
     theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
     ggtitle("Total Risk backlog per site") +
-    scale_fill_manual(values = c("#ff0101", "#fdb239", "#f0f030", "#00ff00"), name = "Risk Backlog")
+    scale_fill_manual(values = setNames(backlog_colours,backlog_levels), name = "Risk Backlog")
   
 }
 
@@ -111,56 +106,20 @@ Trust_energy_plot("Test")
 Trust_site_plot <- function(RNA){
   
   temp_tenure <- Tenure_type %>%
-    filter(Trust_Code == code_org) %>%
-    #mutate(map_colour = case_when(Tenure == "Leased from NHS Property Services" ~ "green",
-    #                              Tenure == "Leased from commercial organisation - lease greater than 99 years" ~ "blue",
-    #                              Tenure == "Leased from commercial organisation - lease less than 99 years" ~ "darkgreen",
-    #                              Tenure == "Freehold" ~ "red",
-    #                              Tenure == "Part site - Private Finance Initiative (PFI)" ~ "darkblue",
-    #                              Tenure == "SLA/lease from public sector" ~ "yellow",
-    #                              Tenure == "NA" ~ "orange",
-    #                              Tenure == "SLA/lease from NHS" ~ "purple",
-    #                              Tenure == "Whole site - Private Finance Initiative (PFI)" ~ "cyan",
-    #                              Tenure == "Local Investment Finance Trust (LIFT))" ~ "pink",
-    #                              TRUE ~ "black"))
+    filter(Trust_Code == code_org)
   
-  pal_levels <- c("Leased from NHS Property Services",
-                  "Leased from commercial organisation - lease greater than 99 years",
-                  "Leased from commercial organisation - lease less than 99 years",
-                  "Freehold",
-                  "Part site - Private Finance Initiative (PFI)",
-                  "SLA/lease from public sector",
-                  "NA",
-                  "SLA/lease from NHS",
-                  "Whole site - Private Finance Initiative (PFI)",
-                  "Local Investment Finance Trust (LIFT))")
-  
-  pal_colours <- c("green",
-                   "blue",
-                   "darkgreen",
-                   "red",
-                   "darkblue",
-                   "yellow",
-                   "orange",
-                   "purple",
-                   "cyan",
-                   "pink")
-  
-  pal <- colorFactor(palette = pal_colours,
-                     levels = pal_levels)
- 
-  Tenure_map <- leaflet(data = temp_tenure) %>%
+   Tenure_map <- leaflet(data = temp_tenure) %>%
     addProviderTiles(provider = "CartoDB.Positron") %>%
     addCircleMarkers(
       ~Longitude_1m, ~Latitude_1m,
       popup = ~paste("Site name: ", Site_Name, "<br>Tenure: ", Tenure),
-      color = ~pal(Tenure),
+      color = ~tenure_pal(Tenure),
       radius = 5,
       fillOpacity = 1.0,
       label = ~as.character(Site_Name)
     ) %>%
     addLegend(values = temp_tenure$Tenure,
-              pal = pal)
+              pal = tenure_pal)
 
   print(Tenure_map) 
   
