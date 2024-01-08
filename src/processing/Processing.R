@@ -2,7 +2,13 @@
 # Tenure ------------------------------------------------------------------
 
 Tenure_type <- Merged_eric_site %>%
-  select(c(ICB, Trust_Code, Site_Code, Site_Name, Tenure, Latitude_1m, Longitude_1m))
+  select(c(ICB,
+           Trust_Code,
+           Site_Code,
+           Site_Name,
+           Tenure,
+           Latitude_1m,
+           Longitude_1m))
 
 # Clinical Space ----------------------------------------------------------
 
