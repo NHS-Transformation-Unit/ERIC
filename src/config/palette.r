@@ -1,8 +1,8 @@
 
 # Clinic_Space_palette ----------------------------------------------------
 
-cs_levels <- c("Non_CS",
-               "CS_Other")
+cs_levels <- c("Non clinical",
+               "Clinical")
 
 cs_colours <- c("blue",
                 "lightblue")
@@ -15,15 +15,15 @@ cs_pal <- colorFactor(palette = cs_colours,
 
 # Age_profile_palette -----------------------------------------------------
 
-age_levels <- c("Age_Pre-1948",
-                "Age_1948-1954",
-                "Age_1955-1964",
-                "Age_1965-1974",
-                "Age_1975-1984",
-                "Age_1985-1994",
-                "Age_1995-2004",
-                "Age_2005-2014",
-                "Age_2015-2024")
+age_levels <- c("Pre-1948",
+                "1948-1954",
+                "1955-1964",
+                "1965-1974",
+                "1975-1984",
+                "1985-1994",
+                "1995-2004",
+                "2005-2014",
+                "2015-2024")
 
 age_colours <- c("#8A1538",
                  "#DA291C",
@@ -43,10 +43,10 @@ age_pal <- colorFactor(palette = age_colours,
 
 # Backlog_palette ---------------------------------------------------------
 
-backlog_levels <- c("High_risk_backlog)",
-                    "Significant_risk_backlog",
-                    "Moderate_risk_backlog",
-                    "Low_risk_backlog")
+backlog_levels <- c("High risk",
+                    "Significant risk",
+                    "Moderate risk",
+                    "Low risk")
 
 backlog_colours <- c("#ff0101",
                      "#fdb239",
@@ -67,7 +67,7 @@ tenure_levels <- c("Leased from NHS Property Services",
                    "NA",
                    "SLA/lease from NHS",
                    "Whole site - Private Finance Initiative (PFI)",
-                   "Local Investment Finance Trust (LIFT))")
+                   "Local Investment Finance Trust (LIFT)")
 
 tenure_colours <- c("green",
                     "blue",
