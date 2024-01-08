@@ -1,12 +1,7 @@
-# Organisation code selection ---------------------------------------------
-
-code_org <- "RNA"
-
-
 
 # Clinical Space ----------------------------------------------------------
 
-Trust_clinical_plot <- function(RNA){
+Trust_clinical_plot <- function(code_org){
   
   temp_clinical <- Clinical_Space %>%
     filter(Trust_Code == code_org)
@@ -23,42 +18,31 @@ Trust_clinical_plot <- function(RNA){
   
 }
 
-Trust_clinical_plot("Test")
-
-
+Trust_clinical_plot("RNA")
 
 # Age Profile -------------------------------------------------------------
 
-Trust_backlog_plot <- function(RNA){
+Trust_age_plot <- function(code_org){
   
-  temp_backlog <- Age_Profile %>%
+  temp_age <- Age_Profile_long %>%
     filter(Trust_Code == code_org)
   
-  ggplot(temp_backlog, aes(x = Site_Name)) +
-    geom_bar(aes(y = Age_pre_1948, fill = "Pre-1948"), stat = "identity") +
-    geom_bar(aes(y = Age_1948_1954, fill = "1948-1954"), stat = "identity") +
-    geom_bar(aes(y = Age_1955_1964, fill = "1955-1964"), stat = "identity") +
-    geom_bar(aes(y = Age_1965_1974, fill = "1965-1974"), stat = "identity") +
-    geom_bar(aes(y = Age_1975_1984, fill = "1975-1984"), stat = "identity") +
-    geom_bar(aes(y = Age_1985_1994, fill = "1985-1994"), stat = "identity") +
-    geom_bar(aes(y = Age_1995_2004, fill = "1995-2004"), stat = "identity") +
-    geom_bar(aes(y = Age_2005_2014, fill = "2005-2014"), stat = "identity") +
-    geom_bar(aes(y = Age_2015_2024, fill = "2015-2024"), stat = "identity") +
-    ylab("Age profile (%)") +
-    xlab("Site name") +
-    theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
-    ggtitle("Age profile per site") +
-    scale_fill_manual(values = setNames(age_colours,age_levels), name = "Age Groups")
-  
+  ggplot(temp_age, aes(x = Site_Name, y = Percentage, fill = Age_group)) +
+    geom_bar(stat = "identity") + 
+    scale_fill_manual(values = age_colours, name = "Age Groups", labels = age_levels) +
+    labs(title = "Age profile per site",
+         caption = "Source: ERIC Publication",
+         x = "Site name",
+         y = "Age profile (%)") +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1))
+    
 }
 
-Trust_backlog_plot("Test")
-
-
+Trust_age_plot("RNA")
 
 # Backlog -----------------------------------------------------------------
 
-Trust_backlog_plot <- function(RNA){
+Trust_backlog_plot <- function(code_org){
   
   temp_backlog <- Cost_backlog %>%
     filter(Trust_Code == code_org)
@@ -77,13 +61,11 @@ Trust_backlog_plot <- function(RNA){
   
 }
 
-Trust_backlog_plot("Test")
-
-
+Trust_backlog_plot("RNA")
 
 # Energy ------------------------------------------------------------------
 
-Trust_energy_plot <- function(RNA){
+Trust_energy_plot <- function(code_org){
   
   temp_energy <- Energy_consumption %>%
     filter(Trust_Code == code_org)
@@ -97,13 +79,11 @@ Trust_energy_plot <- function(RNA){
   
 }
 
-Trust_energy_plot("Test")
-
-
+Trust_energy_plot("RNA")
 
 # Tenure ------------------------------------------------------------------
 
-Trust_site_plot <- function(RNA){
+Trust_site_plot <- function(code_org){
   
   temp_tenure <- Tenure_type %>%
     filter(Trust_Code == code_org)
@@ -125,5 +105,4 @@ Trust_site_plot <- function(RNA){
   
 }
 
-Trust_site_plot("Test")
-
+Trust_site_plot("RNA")
