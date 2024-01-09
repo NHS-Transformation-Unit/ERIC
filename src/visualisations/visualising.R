@@ -1,4 +1,3 @@
-
 # Clinical Space ----------------------------------------------------------
 
 Trust_clinical_plot <- function(code_org){
@@ -18,8 +17,6 @@ Trust_clinical_plot <- function(code_org){
   
 }
 
-Trust_clinical_plot("RNA")
-
 # Age Profile -------------------------------------------------------------
 
 Trust_age_plot <- function(code_org){
@@ -37,8 +34,6 @@ Trust_age_plot <- function(code_org){
     theme(axis.text.x = element_text(angle = 60, hjust = 1))
     
 }
-
-Trust_age_plot("RNA")
 
 # Backlog -----------------------------------------------------------------
 
@@ -61,8 +56,6 @@ Trust_backlog_plot <- function(code_org){
   
 }
 
-Trust_backlog_plot("RNA")
-
 # Energy ------------------------------------------------------------------
 
 Trust_energy_plot <- function(code_org){
@@ -78,8 +71,6 @@ Trust_energy_plot <- function(code_org){
     ggtitle("Electricity consumption in kWh per metre squared")
   
 }
-
-Trust_energy_plot("RNA")
 
 # Tenure ------------------------------------------------------------------
 
@@ -104,5 +95,3 @@ Trust_site_plot <- function(code_org){
   print(Tenure_map) 
   
 }
-
-Trust_site_plot("RNA")
