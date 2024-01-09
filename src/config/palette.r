@@ -10,9 +10,6 @@ cs_colours <- c("blue",
 cs_pal <- colorFactor(palette = cs_colours,
                       levels = cs_levels)
 
-
-
-
 # Age_profile_palette -----------------------------------------------------
 
 age_levels <- c("Pre-1948",
@@ -37,9 +34,6 @@ age_colours <- c("#8A1538",
 
 age_pal <- colorFactor(palette = age_colours,
                       levels = age_levels)
-
-
-
 
 # Backlog_palette ---------------------------------------------------------
 
