@@ -6,7 +6,15 @@ This repository contains the scripts to download, process and analyse the 2022/2
 <br/>
 
 ## Using the Repo
-To be completed
+To recreate the visuals within this repository, clone the repo and run the scripts in the following order:
+`packages.R` in the `requirements` folder
+`load.R` in the `processing` folder
+`cleansing.R` in the `processing` folder
+`processing.R` in the `processing` folder
+`palette.R` in the `config` folder
+`visualising.R` in the `visualisations` folder
+
+The section below shows the structure of the repository to explain the code used. All data is publicly available from NHS Digital.
 
 <br>
 
