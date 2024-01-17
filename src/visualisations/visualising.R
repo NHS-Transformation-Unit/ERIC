@@ -1,3 +1,15 @@
+# Sites -------------------------------------------------------------------
+
+Trust_sites <- function(code_org){
+  
+  temp_sites <- Report_sites %>%
+    filter(Trust_Code == code_org) %>%
+    select(Site_Code,
+           Site_Name) %>%
+    dplyr::rename("Site code" = 1,
+                  "Site Name" = 2)
+}
+
 # Clinical Space ----------------------------------------------------------
 
 Trust_clinical_plot <- function(code_org){
@@ -5,7 +17,7 @@ Trust_clinical_plot <- function(code_org){
   temp_clinical <- Clinical_Space %>%
     filter(Trust_Code == code_org)
   
-  ggplot(temp_clinical, aes(x = Site_Name)) +
+  ggplot(temp_clinical, aes(x = Site_Code)) +
     geom_bar(aes(y = Non_CS, fill = "Non clinical"), stat = "identity") +
     geom_bar(aes(y = CS_Other, fill = "Clinical"), stat = "identity") +
     #scale_y_continuous(labels = scales::comma()) +
@@ -24,7 +36,7 @@ Trust_age_plot <- function(code_org){
   temp_age <- Age_Profile_long %>%
     filter(Trust_Code == code_org)
   
-  ggplot(temp_age, aes(x = Site_Name, y = Percentage, fill = Age_group)) +
+  ggplot(temp_age, aes(x = Site_Code, y = Percentage, fill = Age_group)) +
     geom_bar(stat = "identity") + 
     scale_fill_manual(values = age_colours, name = "Age Groups", labels = age_levels) +
     labs(title = "Age profile per site",
@@ -39,20 +51,18 @@ Trust_age_plot <- function(code_org){
 
 Trust_backlog_plot <- function(code_org){
   
-  temp_backlog <- Cost_backlog %>%
-    filter(Trust_Code == code_org)
+  temp_backlog <- Cost_backlog_long %>%
+    filter(Trust_Code == "R0A")
   
-  ggplot(temp_backlog, aes(x = Site_Name)) +
-    geom_bar(aes(y = High_risk_backlog, fill = "High Risk"), stat = "identity") +
-    geom_bar(aes(y = Significant_risk_backlog, fill = "Significant Risk"), stat = "identity") +
-    geom_bar(aes(y = Moderate_risk_backlog, fill = "Moderate Risk"), stat = "identity") +
-    geom_bar(aes(y = Low_risk_backlog, fill = "Low Risk"), stat = "identity") +
+  ggplot(temp_backlog, aes(x = Site_Code, y = Cost, fill = Backlog_risk)) +
+    geom_bar(stat = "identity") +
+    scale_fill_manual(values = backlog_colours, name = "Risk Level", labels = backlog_levels) +
     scale_y_continuous(labels = scales::dollar_format(prefix = "£")) +
-    ylab("Total backlog by risk") +
-    xlab("Site name") +
-    theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
-    ggtitle("Total Risk backlog per site") +
-    scale_fill_manual(values = setNames(backlog_colours,backlog_levels), name = "Risk Backlog")
+    labs(title = "Total Risk backlog per site",
+         caption = "Source: ERIC Publication",
+         x = "Site name",
+         y = "Total cost") +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1)) 
   
 }
 
@@ -63,7 +73,7 @@ Trust_energy_plot <- function(code_org){
   temp_energy <- Energy_consumption %>%
     filter(Trust_Code == code_org)
   
-  ggplot(temp_energy, aes(x = Site_Name, y = Electricity_per_metre_squared)) +
+  ggplot(temp_energy, aes(x = Site_Code, y = Electricity_per_metre_squared)) +
     geom_bar(stat = "identity", fill = "#005EB8") +
     theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
     ylab("Consumption in kWh per metre squared") +
@@ -77,7 +87,9 @@ Trust_energy_plot <- function(code_org){
 Trust_site_plot <- function(code_org){
   
   temp_tenure <- Tenure_type %>%
-    filter(Trust_Code == code_org)
+    filter(Trust_Code == code_org) %>%
+    filter(!is.na(Longitude_1m) & !is.na(Latitude_1m)) %>%
+    filter(between(Latitude_1m, -90, 90) & between(Longitude_1m, -180, 180))
   
    Tenure_map <- leaflet(data = temp_tenure) %>%
     addProviderTiles(provider = "CartoDB.Positron") %>%
