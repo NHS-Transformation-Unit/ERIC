@@ -5,7 +5,7 @@ date: "16th January 2024"
 output: html_document
 css: "src/config/nhs_tu_theme.css"
 params:
-  organisation: "R0A"
+  organisation: "RBN"
 ---
 
 ```{r setup, include=FALSE}
@@ -39,7 +39,16 @@ Orgcount <- paste(Org_count[RCode], "\n")
 This report uses site codes to shorten names and make visuals easier to read. The sites for your organisation that are present in the ERIC data are listed below, a total of `r Orgcount`.
 
 ```{r Sites, echo = FALSE}
-kable(Trust_sites("R0A"), caption = "Site codes and names")
+RCode <- params$organisation
+kable(Trust_sites(RCode), caption = "Site codes and names")
+```
+
+
+## Location of sites
+
+```{r map_output, echo = FALSE}
+RCode <- params$organisation
+Trust_site_plot(RCode)
 ```
 
 
@@ -90,13 +99,4 @@ The backlog risk is broken down into 4 categories:
 ```{r Trust_backlog_plot, echo = FALSE, warning = FALSE}
 RCode <- params$organisation
 Trust_backlog_plot(RCode)
-```
-
-
-## Location of sites
-
-
-```{r map_output, echo = FALSE}
-RCode <- params$organisation
-Trust_site_plot(RCode)
 ```
