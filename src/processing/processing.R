@@ -1,3 +1,10 @@
+# Sites -------------------------------------------------------------------
+
+Report_sites <- Merged_eric_site %>%
+  select(c(Trust_Code,
+           Site_Code,
+           Site_Name))
+
 # Tenure ------------------------------------------------------------------
 
 Tenure_type <- Merged_eric_site %>%
@@ -67,12 +74,16 @@ Cost_backlog <- Merged_eric_site %>%
   mutate(High_risk_backlog = as.numeric(High_risk_backlog),
          Significant_risk_backlog = as.numeric(Significant_risk_backlog),
          Moderate_risk_backlog = as.numeric(Moderate_risk_backlog),
-         Low_risk_backlog = as.numeric(Low_risk_backlog),
-         "Total_backlog" = High_risk_backlog + Significant_risk_backlog + Moderate_risk_backlog + Low_risk_backlog,
-         "Proportion_high" = High_risk_backlog / Total_backlog,
-         "Proportion_significant" = Significant_risk_backlog / Total_backlog,
-         "Proportion_moderate" = Moderate_risk_backlog / Total_backlog,
-         "Proportion_low" = Low_risk_backlog / Total_backlog)
+         Low_risk_backlog = as.numeric(Low_risk_backlog))
+ 
+Cost_backlog_long <- Cost_backlog %>%
+  gather(key = "Backlog_risk",
+         value = "Cost",
+         -c(1:4)) %>%
+  mutate(Backlog_risk = factor(Backlog_risk, levels = c("High_risk_backlog",
+                                                        "Significant_risk_backlog",
+                                                        "Moderate_risk_backlog",
+                                                        "Low_risk_backlog")))
 
 # Incidents from risk -----------------------------------------------------
 
