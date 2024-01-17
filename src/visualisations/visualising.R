@@ -52,7 +52,7 @@ Trust_age_plot <- function(code_org){
 Trust_backlog_plot <- function(code_org){
   
   temp_backlog <- Cost_backlog_long %>%
-    filter(Trust_Code == "R0A")
+    filter(Trust_Code == code_org)
   
   ggplot(temp_backlog, aes(x = Site_Code, y = Cost, fill = Backlog_risk)) +
     geom_bar(stat = "identity") +
