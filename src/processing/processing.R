@@ -27,7 +27,8 @@ Clinical_Space <- Merged_eric_site %>%
            CS_Other)) %>%
   mutate(CS_Other = as.numeric(CS_Other),
          "Non_CS" = Gross_internal_floor_space - CS_Other,
-         "Proportion_clinical_space" = CS_Other / Gross_internal_floor_space)
+         "Proportion_clinical_space" = CS_Other / Gross_internal_floor_space,
+         "Proportion_non_clinical_space" = Non_CS / Gross_internal_floor_space)
 
 # Age Profile -------------------------------------------------------------
 
