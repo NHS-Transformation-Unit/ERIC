@@ -20,12 +20,13 @@ Trust_clinical_plot <- function(code_org){
   ggplot(temp_clinical, aes(x = Site_Code)) +
     geom_bar(aes(y = Non_CS, fill = "Non clinical"), stat = "identity") +
     geom_bar(aes(y = CS_Other, fill = "Clinical"), stat = "identity") +
-    #scale_y_continuous(labels = scales::comma()) +
-    ylab("Gross internal space in metres squared") +
+    ylab("Gross internal space in square metres") +
     xlab("Site name") +
     theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
     ggtitle("Gross Internal Space, split by clinical and non clinical") +
-    scale_fill_manual(values = setNames(cs_colours,cs_levels), name = "Dedicated floor space")
+    scale_fill_manual(values = setNames(cs_colours,cs_levels), name = "Dedicated floor space") +
+    #scale_y_continuous(labels = scales::percent(accuracy = 1)) +
+    theme(legend.position = "bottom")
   
 }
 
@@ -43,7 +44,8 @@ Trust_age_plot <- function(code_org){
          caption = "Source: ERIC Publication",
          x = "Site name",
          y = "Age profile (%)") +
-    theme(axis.text.x = element_text(angle = 60, hjust = 1))
+    theme(axis.text.x = element_text(angle = 60, hjust = 1),
+          legend.position = "bottom")
     
 }
 
@@ -62,7 +64,8 @@ Trust_backlog_plot <- function(code_org){
          caption = "Source: ERIC Publication",
          x = "Site name",
          y = "Total cost") +
-    theme(axis.text.x = element_text(angle = 60, hjust = 1)) 
+    theme(axis.text.x = element_text(angle = 60, hjust = 1),
+          legend.position = "bottom") 
   
 }
 
@@ -87,11 +90,9 @@ Trust_energy_plot <- function(code_org){
 Trust_site_plot <- function(code_org){
   
   temp_tenure <- Tenure_type %>%
-    filter(Trust_Code == code_org) %>%
-    filter(!is.na(Longitude_1m) & !is.na(Latitude_1m)) %>%
-    filter(between(Latitude_1m, -90, 90) & between(Longitude_1m, -180, 180))
+    filter(Trust_Code == code_org)
   
-   Tenure_map <- leaflet(data = temp_tenure) %>%
+   leaflet(data = temp_tenure) %>%
     addProviderTiles(provider = "CartoDB.Positron") %>%
     addCircleMarkers(
       ~Longitude_1m, ~Latitude_1m,
@@ -103,7 +104,5 @@ Trust_site_plot <- function(code_org){
     ) %>%
     addLegend(values = temp_tenure$Tenure,
               pal = tenure_pal)
-
-  print(Tenure_map) 
   
 }
