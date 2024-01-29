@@ -6,7 +6,8 @@ packages <- c("here",
               "shiny",
               "plotly",
               "markdown",
-              "knitr")
+              "knitr",
+              "scales")
 
 
 lapply(packages, library, character.only=TRUE)
