@@ -13,6 +13,7 @@ To recreate the visuals within this repository, clone the repo and run the scrip
 `processing.R` in the `processing` folder
 `palette.R` in the `config` folder
 `visualising.R` in the `visualisations` folder
+`ERIC Markdown.Rmd` in the main folder
 
 The section below shows the structure of the repository to explain the code used. All data is publicly available from NHS Digital.
 
@@ -39,7 +40,7 @@ At present the structure of the repository is:
 <br/>
 
 ### `data`
-Where the extract of APCE data will be saved for loading and processing.
+Where the extract of ERIC data will be saved for loading and processing.
 
 ### `images`
 
