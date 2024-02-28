@@ -1,0 +1,113 @@
+---
+title: "Visualising ERIC submissions"
+author: "Simon Wickham - NHS Transformation Unit"
+date: "29th January 2024"
+output:
+ html_document:
+    toc: true
+    toc_depth: 2
+    toc_float: true
+    toc_collapsed: true
+    css: src/config/nhs_tu_theme.css
+params:
+  organisation: R0A
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+```{r data_sources, include = FALSE}
+source("src/requirements/packages.R")
+source("src/processing/load.R")
+source("src/processing/cleansing.R")
+source("src/processing/processing.R")
+source("src/config/palette.R")
+source("src/visualisations/visualising.R")
+```
+
+```{r logo, echo = FALSE}
+
+htmltools::img(src = knitr::image_uri(paste0(here(), "/images/TU_logo_large.png")), 
+               alt = 'logo', 
+               style = 'position:absolute; top:0; right:5%; padding:10px;',
+               width = "180px",
+               heigth = "180px")
+```
+
+## Introduction to ERIC data
+
+The Estates Return Information Collection, or ERIC, data comprises information relating to the provision and maintenance of the NHS Estate. These are buildings used to deliver services to ensure the NHS runs, such as buildings, maintaining and equipping hospitals, laundry and catering services and costs and consumption of utilities.
+
+The [ERIC data](https://digital.nhs.uk/data-and-information/publications/statistical/estates-returns-information-collection) is a publicly available data set provided by NHS Digital, using data submitted annually by NHS providers.
+
+
+## Your Organisation {.tabset .tabset-fade}
+
+```{r Count, include = FALSE}
+RCode <- params$organisation
+Org_count <- table(eric_site$Trust.Code)
+Orgcount <- paste(Org_count[RCode], "\n")
+```
+
+This report uses site codes to shorten names and make visuals easier to read. The sites for your organisation that are present in the ERIC data are listed below, a total of `r Orgcount`.
+
+### Site tenure
+```{r map_output}
+Trust_site_plot(params$organisation)
+```
+
+### Organisation sites
+```{r Sites}
+RCode <- params$organisation
+kable(Trust_sites(RCode), caption = "Site codes and names")
+```
+
+## Age of Estates
+
+The age of a building can be a good indication of the risk associated to that building. Generally the new the building, the more fit for purpose it's construction is. This will include aspects such as ventilation systems, heating and insulation. Older buildings will typically risk not being up to date, or requiring a modernisation to bring them up to an acceptable standard.
+
+```{r Trust_age_plot}
+RCode <- params$organisation
+Trust_age_plot(RCode)
+```
+
+
+## Clinical space
+
+The purpose of the site will have an impact on how frequently it might require updating or the kind of maintenance it will require. The purpose will also come with different levels of risk. Ensuring fire doors are fit for purpose in an administration building will carry a different level of risk and expense to a clinical risk regarding ensuring line of sight within a ward.
+
+```{r Trust_clinical_plot}
+RCode <- params$organisation
+Trust_clinical_plot(RCode)
+```
+
+
+## Energy Consumption
+
+Both age of a site and the purpose will invariably lead to variation in the energy consumption of that site. A large inpatient site, running 24 hours a day, 7 days a week will have significantly higher energy consumption, as well as other running costs, when compared with a small administration building running from 08:00 to 17:00, 5 days a week. It is important to acknowledge that there will be varying levels of energy consumption, but ensuring they are appropriate for the activity seen at that particular site.
+
+```{r Trust_energy_plot}
+RCode <- params$organisation
+Trust_energy_plot(RCode)
+```
+
+
+## Estates Backlog
+
+These 3 factors, amongst others, have varying impact on the total backlog costs to the sites. The sites are graded from A to D regarding their condition, with A being best and D being worst. The total backlog costs are what is required to bring the site to a condition B, indicating it is good and fit for purpose. 
+
+The backlog risk is broken down into 4 categories:
+
+- Low risk - repairs/replacement require to be addressed through agreed maintenance programmes or included in the later years of an Estates Strategy.
+
+- Moderate risk - repairs/replacement require effective management and expenditure in the medium term through close monitoring so as not to cause undue concern to statutory enforcement bodies or risk to healthcare delivery or safety.
+
+- Significant risk - repairs/replacement require priority management and expenditure in the short term so as not to cause undue concern to statutory enforcement bodies or risk to healthcare delivery or safety.
+
+- High risk - repairs/replacement must be addressed with urgent priority in order to prevent catastrophic failure, major disruption to clinical services or deficiencies in safety liable to cause serious injury and/or prosecution.
+
+```{r Trust_backlog_plot}
+RCode <- params$organisation
+Trust_backlog_plot(RCode)
+```
