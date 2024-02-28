@@ -1,5 +1,5 @@
 ---
-title: "Visualising ERIC submissions"
+title: "Summary of Estates Return Information Collection"
 author: "Simon Wickham - NHS Transformation Unit"
 date: "29th January 2024"
 output:
@@ -8,7 +8,7 @@ output:
     toc_depth: 2
     toc_float: true
     toc_collapsed: true
-    css: src/config/nhs_tu_theme.css
+    css: paste0(here(),"/src/config/nhs_tu_theme.css")
 params:
   organisation: R0A
 ---
@@ -18,12 +18,12 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 ```
 
 ```{r data_sources, include = FALSE}
-source("src/requirements/packages.R")
-source("src/processing/load.R")
-source("src/processing/cleansing.R")
-source("src/processing/processing.R")
-source("src/config/palette.R")
-source("src/visualisations/visualising.R")
+source(paste0(here(),"/src/requirements/packages.R"))
+source(paste0(here(),"/src/processing/load.R"))
+source(paste0(here(),"/src/processing/cleansing.R"))
+source(paste0(here(),"/src/processing/processing.R"))
+source(paste0(here(),"/src/config/palette.R"))
+source(paste0(here(),"/src/visualisations/visualising.R"))
 ```
 
 ```{r logo, echo = FALSE}
