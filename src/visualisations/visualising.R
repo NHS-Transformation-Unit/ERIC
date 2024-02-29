@@ -26,7 +26,8 @@ Trust_clinical_plot <- function(code_org){
     ggtitle("Gross Internal Space, split by clinical and non clinical") +
     scale_fill_manual(values = setNames(cs_colours,cs_levels), name = "Dedicated floor space") +
     #scale_y_continuous(labels = scales::percent(accuracy = 1)) +
-    theme(legend.position = "bottom")
+    theme(legend.position = "bottom") +
+    selected_theme(hex_col = "#407EC9")
   
 }
 
@@ -45,7 +46,8 @@ Trust_age_plot <- function(code_org){
          x = "Site name",
          y = "Age profile (%)") +
     theme(axis.text.x = element_text(angle = 60, hjust = 1),
-          legend.position = "bottom")
+          legend.position = "bottom") +
+    selected_theme(hex_col = "#407EC9")
     
 }
 
@@ -64,7 +66,8 @@ Trust_gif_age_plot <- function(code_org){
          x = "Age profile",
          y = "Gross internal floor space (square metres)") +
     theme(axis.text.x = element_text(angle = 60, hjust = 1),
-          legend.position = "bottom")
+          legend.position = "bottom") +
+    selected_theme(hex_col = "#407EC9")
   
 }
 
@@ -84,7 +87,8 @@ Trust_backlog_plot <- function(code_org){
          x = "Site name",
          y = "Total cost") +
     theme(axis.text.x = element_text(angle = 60, hjust = 1),
-          legend.position = "bottom") 
+          legend.position = "bottom") +
+    selected_theme(hex_col = "#407EC9")
   
 }
 
@@ -100,7 +104,8 @@ Trust_energy_plot <- function(code_org){
     theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
     ylab("Consumption in kWh per metre squared") +
     xlab("Site name") +
-    ggtitle("Electricity consumption in kWh per metre squared")
+    ggtitle("Electricity consumption in kWh per metre squared") +
+    selected_theme(hex_col = "#407EC9")
   
 }
 
