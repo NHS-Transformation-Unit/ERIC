@@ -61,6 +61,61 @@ Age_Profile_long <- Age_Profile %>%
                                                   "Age_2005_2014",
                                                   "Age_2015_2024")))
 
+
+# GIF with age profile ----------------------------------------------------
+
+GIF_Age_Profile <- Merged_eric_site %>%
+  select (c(ICB,
+            Trust_Code,
+            Site_Code,
+            Site_Name,
+            Age_pre_1948,
+            Age_1948_1954,
+            Age_1955_1964,
+            Age_1965_1974,
+            Age_1975_1984,
+            Age_1985_1994,
+            Age_1995_2004,
+            Age_2005_2014,
+            Age_2015_2024,
+            Gross_internal_floor_space)) %>%
+  mutate("GIF_Age_pre_1948" = (Age_pre_1948 / 100) * Gross_internal_floor_space,
+         "GIF_Age_1948_1954" = (Age_1948_1954 / 100) * Gross_internal_floor_space,
+         "GIF_Age_1955_1964" = (Age_1955_1964 / 100) * Gross_internal_floor_space,
+         "GIF_Age_1965_1974" = (Age_1965_1974 / 100) * Gross_internal_floor_space,
+         "GIF_Age_1975_1984" = (Age_1975_1984 / 100) * Gross_internal_floor_space,
+         "GIF_Age_1985_1994" = (Age_1985_1994 / 100) * Gross_internal_floor_space,
+         "GIF_Age_1995_2004" = (Age_1995_2004 / 100) * Gross_internal_floor_space,
+         "GIF_Age_2005_2014" = (Age_2005_2014 / 100) * Gross_internal_floor_space,
+         "GIF_Age_2015_2024" = (Age_2005_2014 / 100) * Gross_internal_floor_space)
+
+GIF_Age_Profile_long <- GIF_Age_Profile %>%
+  select (c(ICB,
+            Trust_Code,
+            Site_Code,
+            Site_Name,
+            GIF_Age_pre_1948,
+            GIF_Age_1948_1954,
+            GIF_Age_1955_1964,
+            GIF_Age_1965_1974,
+            GIF_Age_1975_1984,
+            GIF_Age_1985_1994,
+            GIF_Age_1995_2004,
+            GIF_Age_2005_2014,
+            GIF_Age_2015_2024)) %>%
+  gather(key = "Age_group",
+         value = "Gross_internal_space",
+         -c(1:4)) %>%
+  mutate(Age_group = factor(Age_group, levels = c("GIF_Age_pre_1948",
+                                                  "GIF_Age_1948_1954",
+                                                  "GIF_Age_1955_1964",
+                                                  "GIF_Age_1965_1974",
+                                                  "GIF_Age_1975_1984",
+                                                  "GIF_Age_1985_1994",
+                                                  "GIF_Age_1995_2004",
+                                                  "GIF_Age_2005_2014",
+                                                  "GIF_Age_2015_2024")))
+
 # Backlog -----------------------------------------------------------------
 
 Cost_backlog <- Merged_eric_site %>%
