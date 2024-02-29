@@ -10,7 +10,7 @@ output:
     toc_collapsed: true
     css: ../config/nhs_tu_theme.css
 params:
-  organisation: RNA
+  organisation: R0A
 ---
 
 ```{r setup, include=FALSE}
@@ -23,6 +23,7 @@ source("../processing/load.R")
 source("../processing/cleansing.R")
 source("../processing/processing.R")
 source("../config/palette.R")
+source("../config/tu_ggplot_themes.R")
 source("../visualisations/visualising.R")
 ```
 
