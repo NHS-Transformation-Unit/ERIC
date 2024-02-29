@@ -10,7 +10,7 @@ output:
     toc_collapsed: true
     css: ../config/nhs_tu_theme.css
 params:
-  organisation: R0A
+  organisation: RNA
 ---
 
 ```{r setup, include=FALSE}
@@ -78,10 +78,19 @@ kable(Trust_sites(RCode), caption = "Site codes and names")
 
 <br/>
 
-## Age of Estates
+## Age of Estates {.tabset .tabset-fade}
 ***
 The age of a building can be a good indication of the risk associated to that building. Generally the more recently a building was constructed, the more fit for purpose the building is and less investment is required. As time progresses and new legislation is introduced regarding buildings and health care settings, the building can fall below acceptable thresholds and require investment to meet new criteria or update installations. 
 
+### Gross internal space
+The below chart shows the overall distribution of gross internal floor space, based on the age profile of the individual sites and the gross internal floor space of each site.
+```{r Trust_gif_age_plot}
+RCode <- params$organisation
+Trust_gif_age_plot(RCode)
+```
+
+### Age profile
+The below chart shows the age profile of each site within the organisation.
 ```{r Trust_age_plot}
 RCode <- params$organisation
 Trust_age_plot(RCode)
