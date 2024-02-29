@@ -49,6 +49,25 @@ Trust_age_plot <- function(code_org){
     
 }
 
+# GIF Age Profile ---------------------------------------------------------
+
+Trust_gif_age_plot <- function(code_org){
+  
+  temp_gif_age <- GIF_Age_Profile_long %>%
+    filter(Trust_Code == code_org)
+  
+  ggplot(temp_gif_age, aes(x = Age_group, y = Gross_internal_space, fill = Age_group)) +
+    geom_bar(stat = "identity") + 
+    scale_fill_manual(values = age_colours, name = "Age Groups", labels = age_levels) +
+    labs(title = "Age profile of the organisation",
+         caption = "Source: ERIC Publication",
+         x = "Age profile",
+         y = "Gross internal floor space (square metres)") +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1),
+          legend.position = "bottom")
+  
+}
+
 # Backlog -----------------------------------------------------------------
 
 Trust_backlog_plot <- function(code_org){
