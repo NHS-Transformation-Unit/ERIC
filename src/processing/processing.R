@@ -79,42 +79,42 @@ GIF_Age_Profile <- Merged_eric_site %>%
             Age_2005_2014,
             Age_2015_2024,
             Gross_internal_floor_space)) %>%
-  mutate("GIF_Age_pre_1948" = (Age_pre_1948 / 100) * Gross_internal_floor_space,
-         "GIF_Age_1948_1954" = (Age_1948_1954 / 100) * Gross_internal_floor_space,
-         "GIF_Age_1955_1964" = (Age_1955_1964 / 100) * Gross_internal_floor_space,
-         "GIF_Age_1965_1974" = (Age_1965_1974 / 100) * Gross_internal_floor_space,
-         "GIF_Age_1975_1984" = (Age_1975_1984 / 100) * Gross_internal_floor_space,
-         "GIF_Age_1985_1994" = (Age_1985_1994 / 100) * Gross_internal_floor_space,
-         "GIF_Age_1995_2004" = (Age_1995_2004 / 100) * Gross_internal_floor_space,
-         "GIF_Age_2005_2014" = (Age_2005_2014 / 100) * Gross_internal_floor_space,
-         "GIF_Age_2015_2024" = (Age_2005_2014 / 100) * Gross_internal_floor_space)
+  mutate("Pre 1948" = (Age_pre_1948 / 100) * Gross_internal_floor_space,
+         "1948-1954" = (Age_1948_1954 / 100) * Gross_internal_floor_space,
+         "1955-1964" = (Age_1955_1964 / 100) * Gross_internal_floor_space,
+         "1965-1974" = (Age_1965_1974 / 100) * Gross_internal_floor_space,
+         "1975-1984" = (Age_1975_1984 / 100) * Gross_internal_floor_space,
+         "1985-1994" = (Age_1985_1994 / 100) * Gross_internal_floor_space,
+         "1995-2004" = (Age_1995_2004 / 100) * Gross_internal_floor_space,
+         "2005-2014" = (Age_2005_2014 / 100) * Gross_internal_floor_space,
+         "2015-2024" = (Age_2015_2024 / 100) * Gross_internal_floor_space)
 
 GIF_Age_Profile_long <- GIF_Age_Profile %>%
   select (c(ICB,
             Trust_Code,
             Site_Code,
             Site_Name,
-            GIF_Age_pre_1948,
-            GIF_Age_1948_1954,
-            GIF_Age_1955_1964,
-            GIF_Age_1965_1974,
-            GIF_Age_1975_1984,
-            GIF_Age_1985_1994,
-            GIF_Age_1995_2004,
-            GIF_Age_2005_2014,
-            GIF_Age_2015_2024)) %>%
+            "Pre 1948",
+            "1948-1954",
+            "1955-1964",
+            "1965-1974",
+            "1975-1984",
+            "1985-1994",
+            "1995-2004",
+            "2005-2014",
+            "2015-2024")) %>%
   gather(key = "Age_group",
          value = "Gross_internal_space",
          -c(1:4)) %>%
-  mutate(Age_group = factor(Age_group, levels = c("GIF_Age_pre_1948",
-                                                  "GIF_Age_1948_1954",
-                                                  "GIF_Age_1955_1964",
-                                                  "GIF_Age_1965_1974",
-                                                  "GIF_Age_1975_1984",
-                                                  "GIF_Age_1985_1994",
-                                                  "GIF_Age_1995_2004",
-                                                  "GIF_Age_2005_2014",
-                                                  "GIF_Age_2015_2024")))
+  mutate(Age_group = factor(Age_group, levels = c("Pre 1948",
+                                                  "1948-1954",
+                                                  "1955-1964",
+                                                  "1965-1974",
+                                                  "1975-1984",
+                                                  "1985-1994",
+                                                  "1995-2004",
+                                                  "2005-2014",
+                                                  "2015-2024")))
 
 # Backlog -----------------------------------------------------------------
 
