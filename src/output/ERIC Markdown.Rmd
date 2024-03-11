@@ -64,20 +64,25 @@ Org_count <- table(eric_site$Trust.Code)
 Orgcount <- paste(Org_count[RCode], "\n")
 ```
 
-This report uses site codes to shorten names and make visuals easier to read. The sites for your organisation that are present in the ERIC data are listed below, a total of `r Orgcount`.
+This report uses site codes to shorten names and make visuals easier to read. There are a total of `r Orgcount` sites included for your organisation. Each can be found in the map of the "Site tenure" tab, and in the table in the "Organisation sites" tab.
 
 ### Site tenure
+This map shows the location of all the sites included in the ERIC returns for your organisation, colour coded by type of tenure.
 ```{r map_output}
 Trust_site_plot(params$organisation)
 ```
 
+<br/>
+
 ### Organisation sites
+This is a reference table showing the sites that are included in this report, and the code used to refer to them in the visuals.
 ```{r Sites}
 RCode <- params$organisation
 kable(Trust_sites(RCode), caption = "Site codes and names")
 ```
 
 <br/>
+
 
 ## Age of Estates {.tabset .tabset-fade}
 ***
@@ -121,7 +126,7 @@ Trust_energy_plot(RCode)
 
 <br/>
 
-## Estates Backlog
+## Estates Backlog {.tabset .tabset-fade}
 ***
 These 3 factors, amongst others, have varying impact on the total backlog costs to the sites. The sites are graded from A to D regarding their condition, with A being best and D being worst. The total backlog costs are what is required to bring the site to a condition B, indicating it is good and fit for purpose. 
 
@@ -135,7 +140,18 @@ The backlog risk is broken down into 4 categories:
 
 - High risk - repairs/replacement must be addressed with urgent priority in order to prevent catastrophic failure, major disruption to clinical services or deficiencies in safety liable to cause serious injury and/or prosecution.
 
-```{r Trust_backlog_plot}
+### Total estate cost
+The below chart shows the total cost to reach condition B, by risk level.
+
+```{r TrustB_backlog_plot}
 RCode <- params$organisation
-Trust_backlog_plot(RCode)
+TrustB_backlog_plot(RCode)
+```
+
+### Estate cost per site
+The below chart shows the total cost for each site to reach condition B, broken down by the risk level. Each bar has the highest risk at the top and the lowest risk at the bottom.
+
+```{r TrustA_backlog_plot}
+RCode <- params$organisation
+TrustA_backlog_plot(RCode)
 ```
