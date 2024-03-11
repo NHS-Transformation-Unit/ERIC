@@ -130,16 +130,21 @@ Cost_backlog <- Merged_eric_site %>%
   mutate(High_risk_backlog = as.numeric(High_risk_backlog),
          Significant_risk_backlog = as.numeric(Significant_risk_backlog),
          Moderate_risk_backlog = as.numeric(Moderate_risk_backlog),
-         Low_risk_backlog = as.numeric(Low_risk_backlog))
+         Low_risk_backlog = as.numeric(Low_risk_backlog)) %>%
+  mutate("High risk" = High_risk_backlog,
+         "Significant risk" = Significant_risk_backlog,
+         "Moderate risk" = Moderate_risk_backlog,
+         "Low risk" = Low_risk_backlog) %>%
+  select (c(1:4,9:12))
  
 Cost_backlog_long <- Cost_backlog %>%
   gather(key = "Backlog_risk",
          value = "Cost",
          -c(1:4)) %>%
-  mutate(Backlog_risk = factor(Backlog_risk, levels = c("High_risk_backlog",
-                                                        "Significant_risk_backlog",
-                                                        "Moderate_risk_backlog",
-                                                        "Low_risk_backlog")))
+  mutate(Backlog_risk = factor(Backlog_risk, levels = c("High risk",
+                                                        "Significant risk",
+                                                        "Moderate risk",
+                                                        "Low risk")))
 
 # Incidents from risk -----------------------------------------------------
 
