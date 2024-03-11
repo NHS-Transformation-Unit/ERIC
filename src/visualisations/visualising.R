@@ -104,11 +104,11 @@ TrustB_backlog_plot <- function(code_org){
     scale_y_continuous(labels = scales::dollar_format(prefix = "£")) +
     labs(title = "Total Risk backlog per site",
          caption = "Source: ERIC Publication",
-         x = "Site code",
+         x = "Risk level",
          y = "Total cost") +
+    selected_theme(hex_col = "#407EC9") + 
     theme(axis.text.x = element_text(angle = 60, hjust = 1),
-          legend.position = "bottom") +
-    selected_theme(hex_col = "#407EC9")
+          legend.position = "none")
   
 }
 
