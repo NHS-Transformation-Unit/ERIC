@@ -25,7 +25,7 @@ Trust_clinical_plot <- function(code_org){
     theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
     ggtitle("Gross Internal Space, split by clinical and non clinical") +
     scale_fill_manual(values = setNames(cs_colours,cs_levels), name = "Dedicated floor space") +
-    #scale_y_continuous(labels = scales::percent(accuracy = 1)) +
+    scale_y_continuous(labels = comma_format()) +
     theme(legend.position = "bottom") +
     selected_theme(hex_col = "#407EC9")
   
@@ -65,20 +65,40 @@ Trust_gif_age_plot <- function(code_org){
          caption = "Source: ERIC Publication",
          x = "Age profile",
          y = "Gross internal floor space (square metres)") +
+    scale_y_continuous(labels = comma_format()) +
+    selected_theme(hex_col = "#407EC9") +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1),
+          legend.position = "none")
+  
+}
+
+# Backlog -----------------------------------------------------------------
+
+TrustA_backlog_plot <- function(code_org){
+  
+  temp_backlogA <- Cost_backlog_long %>%
+    filter(Trust_Code == code_org)
+  
+  ggplot(temp_backlogA, aes(x = Site_Code, y = Cost, fill = Backlog_risk)) +
+    geom_bar(stat = "identity") +
+    scale_fill_manual(values = backlog_colours, name = "Risk Level", labels = backlog_levels) +
+    scale_y_continuous(labels = scales::dollar_format(prefix = "£")) +
+    labs(title = "Total Risk backlog per site",
+         caption = "Source: ERIC Publication",
+         x = "Site code",
+         y = "Total cost") +
     theme(axis.text.x = element_text(angle = 60, hjust = 1),
           legend.position = "bottom") +
     selected_theme(hex_col = "#407EC9")
   
 }
 
-# Backlog -----------------------------------------------------------------
-
-Trust_backlog_plot <- function(code_org){
+TrustB_backlog_plot <- function(code_org){
   
-  temp_backlog <- Cost_backlog_long %>%
+  temp_backlogB <- Cost_backlog_long %>%
     filter(Trust_Code == code_org)
   
-  ggplot(temp_backlog, aes(x = Site_Code, y = Cost, fill = Backlog_risk)) +
+  ggplot(temp_backlogB, aes(x = Backlog_risk, y = Cost, fill = Backlog_risk)) +
     geom_bar(stat = "identity") +
     scale_fill_manual(values = backlog_colours, name = "Risk Level", labels = backlog_levels) +
     scale_y_continuous(labels = scales::dollar_format(prefix = "£")) +
