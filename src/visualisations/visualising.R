@@ -21,7 +21,7 @@ Trust_clinical_plot <- function(code_org){
     geom_bar(aes(y = Non_CS, fill = "Non clinical"), stat = "identity") +
     geom_bar(aes(y = CS_Other, fill = "Clinical"), stat = "identity") +
     ylab("Gross internal space in square metres") +
-    xlab("Site name") +
+    xlab("Site code") +
     theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
     ggtitle("Gross Internal Space, split by clinical and non clinical") +
     scale_fill_manual(values = setNames(cs_colours,cs_levels), name = "Dedicated floor space") +
@@ -43,7 +43,7 @@ Trust_age_plot <- function(code_org){
     scale_fill_manual(values = age_colours, name = "Age Groups", labels = age_levels) +
     labs(title = "Age profile per site",
          caption = "Source: ERIC Publication",
-         x = "Site name",
+         x = "Site code",
          y = "Age profile (%)") +
     theme(axis.text.x = element_text(angle = 60, hjust = 1),
           legend.position = "bottom") +
@@ -84,7 +84,7 @@ Trust_backlog_plot <- function(code_org){
     scale_y_continuous(labels = scales::dollar_format(prefix = "£")) +
     labs(title = "Total Risk backlog per site",
          caption = "Source: ERIC Publication",
-         x = "Site name",
+         x = "Site code",
          y = "Total cost") +
     theme(axis.text.x = element_text(angle = 60, hjust = 1),
           legend.position = "bottom") +
@@ -103,7 +103,7 @@ Trust_energy_plot <- function(code_org){
     geom_bar(stat = "identity", fill = "#005EB8") +
     theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
     ylab("Consumption in kWh per metre squared") +
-    xlab("Site name") +
+    xlab("Site code") +
     ggtitle("Electricity consumption in kWh per metre squared") +
     selected_theme(hex_col = "#407EC9")
   
